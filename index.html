@@ -1,92 +1,414 @@
 <!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-<input type="checkbox" id="menu-checkbox" class="menu-checkbox" name="menu-checkbox">
-<div class="menu">
-  <a class="link" href="#item1">Timeline</a>
-  <a class="link" href="#item2">University of Kent</a>
-  <a class="link" href="#item3">GForces - CSS</a>
-  <a class="link" href="#item4">Graduate Developer</a>
-  <a class="link" href="#item5">Associate Developer</a>
-  <a class="link" href="#item6">Developer - Web</a>
-  <a class="link" href="#item7">Developer - TV</a>
-  <a class="link" href="#item8">Projects</a>
-  <a class="link" href="#item9">Contact</a>
-</div>
-<div class="container">
-  <!-- Proxy Divs-->
-  <div id="item1"></div>
-  <div id="item2"></div>
-  <div id="item3"></div>
-  <div id="item4"></div>
-  <div id="item5"></div>
-  <div id="item6"></div>
-  <div id="item7"></div>
-  <div id="item8"></div>
-  <div id="item9"></div>
 
-  <div class="grid">
-    <div class="item">
-      <label for="menu-checkbox" class="menu-button">☰</label>
-      <a class="item-link" href="#item1"></a>
-      <h2>Chung Man Chau <br>Pure CSS Navigation</h2>
-      <a class="item-next" href="#item2">Next!</a>
-    </div>
-    <div class="item">
-      <label for="menu-checkbox" class="menu-button">☰</label>
-      <a class="item-link" href="#item2"></a>
-      <h2>University of Kent</h2>
-      <a class="item-next" href="#item3">Next!</a>
-    </div>
-    <div class="item">
-      <label for="menu-checkbox" class="menu-button">☰</label>
-      <a class="item-link" href="#item3"></a>
-      <h2>GForces - CSS</h2>
-      <a class="item-next" href="#item4">Next!</a>
-    </div>
-    <div class="item">
-      <label for="menu-checkbox" class="menu-button">☰</label>
-      <a class="item-link" href="#item4"></a>
-      <h2>Sky Graduate Software Developer</h2>
-      <a class="item-next" href="#item5">Next!</a>
-    </div>
-    <div class="item">
-      <label for="menu-checkbox" class="menu-button">☰</label>
-      <a class="item-link" href="#item5"></a>
-      <h2>Sky Associate Software Developer - Payments Manger - Java</h2>
-      <a class="item-next" href="#item6">Next!</a>
-    </div>
-    <div class="item">
-      <label for="menu-checkbox" class="menu-button">☰</label>
-      <a class="item-link" href="#item6"></a>
-      <h2>Sky Software Developer - Web - React</h2>
-      <a class="item-next" href="#item7">Next!</a>
-    </div>
-    <div class="item">
-      <label for="menu-checkbox" class="menu-button">☰</label>
-      <a class="item-link" href="#item7"></a>
-      <h2>Sky Software Developer / Designer - TV - React Native / After Effects</h2>
-      <a class="item-next" href="#item8">Next!</a>
-    </div>
-    <div class="item">
-      <label for="menu-checkbox" class="menu-button">☰</label>
-      <a class="item-link" href="#item8"></a>
-      <h2>Projects</h2>
-      <a class="item-next" href="#item9">Next!</a>
-    </div>
-    <div class="item">
-      <label for="menu-checkbox" class="menu-button">☰</label>
-      <a class="item-link" href="#item9"></a>
-      <h2>Contact</h2>
-      <a class="item-next" href="#item1">Next!</a>
-    </div>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    :root {
+      --gap: 2rem;
+      --width: calc(100vw - var(--gap));
+      --height: calc(100vh - var(--gap));
+      --menuTiming: 0.4s;
+    }
+
+    body {
+      background: #333;
+      font-family: "Arial";
+    }
+
+    .container {
+      width: var(--width);
+      height: var(--height);
+      position: fixed;
+      top: calc(var(--gap) / 2);
+      left: calc(var(--gap) / 2);
+      transition: transform var(--menuTiming) ease-in-out;
+    }
+
+    .grid {
+      display: grid;
+      grid-template: repeat(4, var(--height))/repeat(3, var(--width));
+      grid-gap: var(--gap);
+      transition: transform 0.6s ease-in-out;
+    }
+
+    .item {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    .item:nth-child(1) {
+      background: #f44336;
+    }
+
+    .item:nth-child(2) {
+      background: #2196f3;
+    }
+
+    .item:nth-child(3) {
+      background: #8bc34a;
+    }
+
+    .item:nth-child(4) {
+      background: #ff5722;
+    }
+
+    .item:nth-child(5) {
+      background: #e91e63;
+    }
+
+    .item:nth-child(6) {
+      background: #cddc39;
+    }
+
+    .item:nth-child(7) {
+      background: #2196f3;
+    }
+
+    .item:nth-child(8) {
+      background: #FF9800;
+    }
+
+    .item:nth-child(9) {
+      background: #9c27b0;
+    }
+
+    .item .item-link {
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+    }
+
+    .item .item-next {
+      position: absolute;
+      background: white;
+      color: black;
+      font-weight: bold;
+      text-decoration: none;
+      padding: 1.5em 1em;
+      right: 2em;
+      bottom: 2em;
+      border-radius: 50%;
+      z-index: 2;
+    }
+
+    .item h2 {
+      width: 70%;
+      text-align: center;
+      color: #fff;
+      font-size: 4rem;
+    }
+
+    #item1:target~.grid {
+      transform: translate3d(0, 0, 0);
+    }
+
+    #item2:target~.grid {
+      transform: translate3d(calc(-1 * (var(--width) + var(--gap))), 0, 0);
+    }
+
+    #item3:target~.grid {
+      transform: translate3d(calc(-2 * (var(--width) + var(--gap))), 0, 0);
+    }
+
+    #item4:target~.grid {
+      transform: translate3d(0, calc(-1 * (var(--height) + var(--gap))), 0);
+    }
+
+    #item5:target~.grid {
+      transform: translate3d(calc(-1 * (var(--width) + var(--gap))), calc(-1 * (var(--height) + var(--gap))), 0);
+    }
+
+    #item6:target~.grid {
+      transform: translate3d(calc(-2 * (var(--width) + var(--gap))), calc(-1 * (var(--height) + var(--gap))), 0);
+    }
+
+    #item7:target~.grid {
+      transform: translate3d(0, calc(-2 * (var(--height) + var(--gap))), 0);
+    }
+
+    #item8:target~.grid {
+      transform: translate3d(calc(-1 * (var(--width) + var(--gap))), calc(-2 * (var(--height) + var(--gap))), 0);
+    }
+
+    #item9:target~.grid {
+      transform: translate3d(calc(-2 * (var(--width) + var(--gap))), calc(-2 * (var(--height) + var(--gap))), 0);
+    }
+
+    .menu {
+      position: fixed;
+      z-index: 20;
+      transform: translateX(-100%);
+      transition: transform var(--menuTiming) ease-in-out;
+      background: #fff;
+      height: 100vh;
+    }
+
+    .menu .link {
+      display: block;
+      color: black;
+      font-weight: bold;
+      text-decoration: none;
+      padding: 1em;
+      border: 1em solid white;
+    }
+
+    .menu .link:nth-child(1) {
+      background: #f44336;
+    }
+
+    .menu .link:nth-child(2) {
+      background: #2196f3;
+    }
+
+    .menu .link:nth-child(3) {
+      background: #8bc34a;
+    }
+
+    .menu .link:nth-child(4) {
+      background: #ff5722;
+    }
+
+    .menu .link:nth-child(5) {
+      background: #e91e63;
+    }
+
+    .menu .link:nth-child(6) {
+      background: #cddc39;
+    }
+
+    .menu .link:nth-child(7) {
+      background: #03a9f4;
+    }
+
+    .menu .link:nth-child(8) {
+      background: #FF9800;
+    }
+
+    .menu .link:nth-child(9) {
+      background: #9c27b0;
+    }
+
+    .menu-checkbox {
+      position: fixed;
+      top: -1em;
+    }
+
+    .menu-checkbox:checked~.container {
+      transform: scale(0.5);
+    }
+
+    .menu-checkbox:checked~.menu {
+      transform: translateX(0%);
+    }
+
+    .menu-checkbox #item1:target {
+      transform: scale(1);
+    }
+
+    .menu-button {
+      position: absolute;
+      top: 1em;
+      left: 1em;
+      font-size: 25px;
+      border-radius: 50%;
+      background: white;
+      width: 2em;
+      height: 2em;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      user-select: none;
+      cursor: pointer;
+      box-shadow: 2px 5px 2px rgba(0, 0, 0, 0.5);
+      transition: all 0.1s ease-in;
+      z-index: 10;
+    }
+
+    .menu-button:hover {
+      transform: scale(0.98);
+      box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.5);
+    }
+
+    .adnan {
+      border-radius: 50%;
+      border: 10px solid white;
+      box-shadow: 0.2em 0.5em 1em rgba(0, 0, 0, 0.8);
+      cursor: pointer;
+      transition: 2.5s transform cubic-bezier(0.3, -0.6, 0.3, 1.3);
+      margin-top: 1em;
+      z-index: 1;
+      animation: rotatoes 1.5s ease-in-out infinite alternate;
+    }
+
+    .adnan:hover {
+      transform: rotate(720deg);
+    }
+
+    @keyframes rotatoes {
+      from {
+        transform: rotate(-70deg);
+      }
+      to {
+        transform: rotate(70deg);
+      }
+    }
+
+    .scrolly-container {
+      width: 50%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    .scrolly-container-2 {
+      width: 50%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      right: 0;
+    }
+
+    .big {
+      font-size: 5em;
+      animation: redText 1.5s ease-in-out infinite alternate;
+    }
+
+    .day {
+      font-size: 5em;
+      animation: yellowText 1.5s ease-in-out infinite alternate;
+    }
+
+    .wally {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 250px;
+      transform: translate(-50%, -50%);
+      animation: wallyHide 1.5s ease-in-out infinite alternate;
+    }
+
+    @keyframes wallyHide {
+      from {
+        transform: translate(-50%, -50%);
+      }
+      to {
+        transform: translate(-40%, -150%);
+      }
+    }
+
+    @keyframes redText {
+      from {
+        text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #FF1177, 0 0 70px #FF1177, 0 0 80px #FF1177, 0 0 100px #FF1177, 0 0 150px #FF1177;
+      }
+      to {
+        text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #FF1177, 0 0 35px #FF1177, 0 0 40px #FF1177, 0 0 50px #FF1177, 0 0 75px #FF1177;
+      }
+    }
+
+    @keyframes yellowText {
+      from {
+        text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #FFDD1B, 0 0 70px #FFDD1B, 0 0 80px #FFDD1B, 0 0 100px #FFDD1B, 0 0 150px #FFDD1B;
+      }
+      to {
+        text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #FFDD1B, 0 0 35px #FFDD1B, 0 0 40px #FFDD1B, 0 0 50px #FFDD1B, 0 0 75px #FFDD1B;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <input type="checkbox" id="menu-checkbox" class="menu-checkbox" name="menu-checkbox">
+  <div class="menu">
+    <a class="link" href="#item1">Timeline</a>
+    <a class="link" href="#item2">University of Kent</a>
+    <a class="link" href="#item3">GForces - CSS</a>
+    <a class="link" href="#item4">Graduate Developer</a>
+    <a class="link" href="#item5">Associate Developer</a>
+    <a class="link" href="#item6">Developer - Web</a>
+    <a class="link" href="#item7">Developer - TV</a>
+    <a class="link" href="#item8">Projects</a>
+    <a class="link" href="#item9">Contact</a>
   </div>
+  <div class="container">
+    <!-- Proxy Divs-->
+    <div id="item1"></div>
+    <div id="item2"></div>
+    <div id="item3"></div>
+    <div id="item4"></div>
+    <div id="item5"></div>
+    <div id="item6"></div>
+    <div id="item7"></div>
+    <div id="item8"></div>
+    <div id="item9"></div>
+
+    <div class="grid">
+      <div class="item">
+        <label for="menu-checkbox" class="menu-button">☰</label>
+        <a class="item-link" href="#item1"></a>
+        <h2>Chung Man Chau <br>Pure CSS Navigation</h2>
+        <a class="item-next" href="#item2">Next!</a>
+      </div>
+      <div class="item">
+        <label for="menu-checkbox" class="menu-button">☰</label>
+        <a class="item-link" href="#item2"></a>
+        <h2>University of Kent</h2>
+        <a class="item-next" href="#item3">Next!</a>
+      </div>
+      <div class="item">
+        <label for="menu-checkbox" class="menu-button">☰</label>
+        <a class="item-link" href="#item3"></a>
+        <h2>GForces - CSS</h2>
+        <a class="item-next" href="#item4">Next!</a>
+      </div>
+      <div class="item">
+        <label for="menu-checkbox" class="menu-button">☰</label>
+        <a class="item-link" href="#item4"></a>
+        <h2>Sky Graduate Software Developer</h2>
+        <a class="item-next" href="#item5">Next!</a>
+      </div>
+      <div class="item">
+        <label for="menu-checkbox" class="menu-button">☰</label>
+        <a class="item-link" href="#item5"></a>
+        <h2>Sky Associate Software Developer - Payments Manger - Java</h2>
+        <a class="item-next" href="#item6">Next!</a>
+      </div>
+      <div class="item">
+        <label for="menu-checkbox" class="menu-button">☰</label>
+        <a class="item-link" href="#item6"></a>
+        <h2>Sky Software Developer - Web - React</h2>
+        <a class="item-next" href="#item7">Next!</a>
+      </div>
+      <div class="item">
+        <label for="menu-checkbox" class="menu-button">☰</label>
+        <a class="item-link" href="#item7"></a>
+        <h2>Sky Software Developer / Designer - TV - React Native / After Effects</h2>
+        <a class="item-next" href="#item8">Next!</a>
+      </div>
+      <div class="item">
+        <label for="menu-checkbox" class="menu-button">☰</label>
+        <a class="item-link" href="#item8"></a>
+        <h2>Projects</h2>
+        <a class="item-next" href="#item9">Next!</a>
+      </div>
+      <div class="item">
+        <label for="menu-checkbox" class="menu-button">☰</label>
+        <a class="item-link" href="#item9"></a>
+        <h2>Contact</h2>
+        <a class="item-next" href="#item1">Next!</a>
+      </div>
+    </div>
 </body>
+
 </html>
